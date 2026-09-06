@@ -1,0 +1,36 @@
+# ---- LaTeX ----
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+
+# ---- Office ----
+~$*.docx
+~$*.xlsx
+~$*.pptx
+
+# ---- Sistema ----
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ---- Secretos ----
+.env
+.env.local
+*.key
+
+# ---- Entrega 2: ampliar segun el stack que se defina ----
+# Python:  __pycache__/  venv/  .venv/  *.pyc
+# Node:    node_modules/  dist/  build/
