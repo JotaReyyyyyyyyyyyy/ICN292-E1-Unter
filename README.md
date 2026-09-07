@@ -66,16 +66,17 @@ está documentado en el informe (sección de arquitectura lógica).
 
 ## 5. Equipo
 
-<!-- PENDIENTE: completar antes del cierre -->
+**Grupo 2 · Paralelo 100**
 
-| Nombre completo | RUT | Rol | Usuario GitHub |
-|---|---|---|---|
-| Joaquín Tapia | _pendiente_ | _pendiente_ | JotaReyyyyyyyyyyyy |
-| _pendiente_ | | | |
-| _pendiente_ | | | |
-| _pendiente_ | | | |
+| Nombre completo | Rol USM | RUT | Rol en el equipo | Usuario GitHub |
+|---|---|---|---|---|
+| Juan Pablo Godoy Fajardo | 202360577-8 | _pendiente_ | Evidencia del caso y gobernanza de datos | _pendiente_ |
+| Vicente Soto Martínez | 202204651-1 | _pendiente_ | Interfaz y tablero de KPI | _pendiente_ |
+| Joaquín Tapia Mandiola | 202260674-6 | _pendiente_ | Modelo de datos y automatización | JotaReyyyyyyyyyyyy |
+| Claudio Vera Avila | 202104575-9 | _pendiente_ | Base de datos y reproducibilidad | _pendiente_ |
 
-**Paralelo:** _pendiente_
+Los roles en el equipo corresponden al reparto de hitos del plan de Entrega 2
+(sección 7 del informe) y se confirman en la primera reunión posterior a la E1.
 
 ## 6. Asignatura
 
