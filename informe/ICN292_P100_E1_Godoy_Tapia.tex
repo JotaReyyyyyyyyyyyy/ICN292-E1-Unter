@@ -1,0 +1,426 @@
+\documentclass{article}
+
+%%% LANGUAGE: Spanish
+\usepackage[spanish,english]{babel}
+\addto\shorthandsspanish{\spanishdeactivate{~<>}}
+
+%%% ENCODING
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%%% PACKAGES
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{paralist}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{lipsum}
+\usepackage[section]{placeins}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+
+%%% COLUMN TYPE: X justificada a la izquierda
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+%%% GENERAL INFORMATION
+\newcommand{\theCampus}{Campus Vitacura}
+\newcommand{\theAssignment}{Sistemas de Información para la Gestión}
+\newcommand{\theCourseCode}{ICN-292}
+\newcommand{\theReportTitle}{Entrega 1 - UNTER}
+\newcommand{\theGroup}{Grupo 2}
+\newcommand{\thePar}{100}
+\newcommand{\theAuthorA}{Juan Pablo Godoy Fajardo}
+\newcommand{\theAuthorB}{Vicente Soto Martínez}
+\newcommand{\theAuthorC}{Joaquin Tapia Mandiola}
+\newcommand{\theAuthorD}{Claudio Vera Avila}
+\newcommand{\theStudentIdA}{202360577-8}
+\newcommand{\theStudentIdB}{202204651-1}
+\newcommand{\theStudentIdC}{202260674-6}
+\newcommand{\theStudentIdD}{202104575-9}
+\newcommand{\theSemester}{Segundo Semestre 2026}
+
+%%% DATE
+\usepackage{datetime}
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+
+%%% PAGE DIMENSIONS
+\usepackage[margin=25mm,inner=30mm]{geometry}
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr}
+\setlength{\headheight}{45pt}
+\setlength{\headsep}{12pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\includegraphics[scale=0.3]{Logo usmUSM.png}}
+\chead{}
+\rhead{}
+\renewcommand{\headrulewidth}{0.5pt}
+\fancyfoot[C]{\textbf{\thepage}}
+
+%%% TABLE OF CONTENTS APPEARANCE
+\makeatletter
+\def\tableofcontents{%
+ \newpage
+ \centerline{\large\scshape Índice}
+ \vspace*{0.3in}
+ \@mkboth{CONTENTS}{CONTENTS}
+ \@starttoc{toc}
+}
+\makeatother
+
+%%% PLACEHOLDERS
+\newcommand{\placeholdergrafico}[1]{%
+\begin{figure}[H]
+\centering
+\begin{tcolorbox}[width=0.85\textwidth,colback=gray!10,colframe=gray!60,arc=2mm]
+\centering
+\vspace{2cm}
+\textbf{[ ESPACIO PARA GRÁFICO ]}\\[0.3cm]
+\textit{#1}\\[0.3cm]
+\vspace{2cm}
+\end{tcolorbox}
+\end{figure}
+}
+
+\newcommand{\placeholdertexto}{%
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem non justo tempor facilisis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin aliquet, justo vitae consequat dictum, lorem velit tincidunt neque, sed consequat nunc libero non justo.
+}
+
+%%% MARCA DE DATO PENDIENTE
+%%% Cuando esten todos completos, reemplazar por: \newcommand{\pend}[1]{}
+\newcommand{\pend}[1]{\textcolor{red}{\textbf{[#1]}}}
+
+\hypersetup{pdftitle={Entrega 1 - UNTER}}
+
+%------------------------------------------------------------------------------
+%%%% TITLE PAGE
+%------------------------------------------------------------------------------
+\begin{document}
+\selectlanguage{spanish}
+\hypersetup{pageanchor=false}
+
+\begin{titlepage}
+\thispagestyle{empty}
+
+\vspace*{1.2cm}
+
+\begin{center}
+\includegraphics[scale=0.5]{Logo usmUSM.png}
+\end{center}
+
+\vspace{2.2cm}
+
+\begin{center}
+\hrule
+\vspace{2mm}
+{\Huge \bfseries \theReportTitle}\\[0.5cm]
+{\Large \theCourseCode}\\[0.3cm]
+{\Large \scshape \theAssignment}
+\vspace{5mm}
+\hrule
+\vspace{1cm}
+
+%%%% AUTHORS %%%%
+\centering
+
+\textbf{\theGroup} \quad -- \quad \textbf{Paralelo \thePar} \\
+\vspace{0.4cm}
+\textbf{Integrantes:}\\[0.3cm]
+
+\textbf{\theAuthorA} \\
+{\small \theStudentIdA}\\[0.3cm]
+
+\textbf{\theAuthorB} \\
+{\small \theStudentIdB}\\[0.3cm]
+
+\textbf{\theAuthorC} \\
+{\small \theStudentIdC}\\[0.3cm]
+
+\textbf{\theAuthorD} \\
+{\small \theStudentIdD}
+
+\vspace{0.5cm}
+\textbf{Repositorio en GitHub:}\\[0.2cm]
+{\small \url{https://github.com/JotaReyyyyyyyyyyyy/ICN292-E1-Unter}}
+
+\vfill
+\textsc{\theSemester}\\[0.5cm]
+\textsc{\theCampus}
+\end{center}
+\end{titlepage}
+\hypersetup{pageanchor=true}
+\pagenumbering{arabic}
+
+\tableofcontents
+\newpage
+
+%==============================================================
+\section{Portada y ficha del equipo}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lllc}
+\toprule
+\textbf{Integrante} & \textbf{Rol USM} & \textbf{RUT} & \textbf{Rol en el equipo} \\
+\midrule
+\theAuthorA & \theStudentIdA & \pend{RUT} & Por definir \\
+\theAuthorB & \theStudentIdB & \pend{RUT} & Por definir \\
+\theAuthorC & \theStudentIdC & \pend{RUT} & Por definir \\
+\theAuthorD & \theStudentIdD & \pend{RUT} & Por definir \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{Paralelo:} \thePar
+
+\noindent\textbf{Repositorio GitHub:} \url{https://github.com/JotaReyyyyyyyyyyyy/ICN292-E1-Unter}
+
+%==============================================================
+\section{PYME y problema (evidencia)}
+
+\subsection{Identificación de la PYME}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{lL}
+\toprule
+\textbf{Campo} & \textbf{Valor} \\
+\midrule
+Nombre & Unter SpA \\
+Rubro & Distribuidora de equipos de protección personal (EPP) \\
+Tamaño & Microempresa: 2 trabajadores \\
+Ubicación & La Concepción 81, \pend{comuna, ciudad} \\
+RUT & \pend{RUT de la empresa} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent La operación completa de Unter recae en dos personas:
+
+\begin{itemize}
+\item \textbf{Ariel} --- Gerente General. Área comercial, catálogo, especificaciones técnicas, prospección y atención de clientes.
+\item \textbf{Jani} --- Gerente de Finanzas. Tesorería, precios, condiciones de pago y plazos, y la totalidad del trato y la negociación con proveedores.
+\end{itemize}
+
+\subsection{Evidencia de existencia}
+
+\pend{Por completar: enlaces fechados, capturas numeradas en el anexo o acta de entrevista firmada. Responsable: Juan Pablo.}
+
+Se realizó una primera instancia de levantamiento en modalidad informal. La entrevista formal, con acta firmada, queda registrada en el Anexo~\ref{anexo:material}.
+
+\subsection{Problema de negocio}
+
+La alta dependencia de procesos manuales y descentralizados para la gestión de consultas de clientes, prospección comercial y administración técnica, provoca tiempos de respuesta prolongados, fuga de oportunidades de venta y una alta inconsistencia en la información entregada, afectando directamente la calidad del servicio y la escalabilidad del modelo de negocio.
+
+\subsubsection*{Impacto}
+
+\begin{itemize}
+\item \textbf{Tiempo:} elevada carga de horas-hombre invertidas en tareas de búsqueda, rescate de información dispersa y coordinación manual entre Jani y Ariel, lo que eleva el costo operativo por transacción y reduce el tiempo disponible para gestión estratégica.
+\item \textbf{Costo:} lucro cesante significativo por la fuga de oportunidades de venta ante tiempos de respuesta prolongados y la ineficiencia en el despliegue de esfuerzos comerciales reactivos.
+\item \textbf{Error:} riesgo crítico de desintermediación comercial al compartir documentación original de proveedores, y alta probabilidad de entregar especificaciones inconsistentes o desactualizadas por falta de un repositorio técnico normalizado.
+\item \textbf{Servicio:} degradación de la experiencia del cliente final debido a una atención fragmentada, tiempos de espera inciertos y ausencia de trazabilidad en el ciclo completo de consulta y venta.
+\end{itemize}
+
+\subsubsection*{Indicadores del problema}
+
+Los siguientes indicadores cuantifican el problema descrito y constituyen la línea base sobre la cual se medirán los KPI de la Entrega 2.
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{Lcc}
+\toprule
+\textbf{Indicador} & \textbf{Valor actual} & \textbf{Fuente} \\
+\midrule
+Consultas de clientes recibidas al mes & \pend{dato} & Entrevista \\
+Tiempo promedio de respuesta a una consulta & \pend{dato} & Entrevista \\
+Peor tiempo de respuesta registrado & \pend{dato} & Entrevista \\
+Consultas al mes no resueltas por falta de información & \pend{dato} & Entrevista \\
+Productos distintos en catálogo & \pend{dato} & Entrevista \\
+Productos con ficha técnica propia de Unter & \pend{dato} & Entrevista \\
+Horas al mes dedicadas a prospección manual & \pend{dato} & Entrevista \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Objetivo del SIG propuesto}
+
+Implementar un sistema de información que automatice la atención de consultas de clientes, la prospección comercial y la normalización de la documentación técnica, de modo que la respuesta a un cliente deje de depender de la disponibilidad y la memoria de una persona específica y pase a depender de un dato registrado y trazable.
+
+\medskip
+\noindent\textbf{Meta de desempeño:} reducir en un 30\,\% el tiempo promedio de respuesta y la carga operativa asociada, garantizando la escalabilidad de la operación sin aumentar la dotación actual de dos personas. La verificación de esta meta se realizará en la Entrega 2 contra la línea base levantada en la tabla de indicadores anterior.
+
+%==============================================================
+\section{Requerimientos desde cero}
+
+\subsection{Actores y roles}
+
+\subsubsection*{Actores humanos}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{llL}
+\toprule
+\textbf{Actor} & \textbf{Tipo} & \textbf{Rol} \\
+\midrule
+Ariel & Interno & Gerente General. Área comercial, catálogo, especificaciones técnicas, prospección y atención. Asume cualquier rol adicional que se identifique. \\
+Jani & Interno & Gerente de Finanzas. Tesorería, precios, condiciones de pago y plazos, y trato y negociación con proveedores. \\
+Cliente & Externo & Empresa o persona que consulta por productos, precios o especificaciones técnicas. \\
+Proveedor & Externo & Empresa que abastece los productos y origina la documentación técnica. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection*{Sistemas}
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{lL}
+\toprule
+\textbf{Sistema} & \textbf{Función} \\
+\midrule
+Asistente de IA (bot) & Atiende el chat, interpreta la consulta, responde desde la base de información aprobada y deriva cuando no puede resolver. \\
+Motor de búsqueda de clientes (N8N) & Recorre fuentes abiertas, recopila y organiza empresas y contactos potenciales. \\
+Generador de fichas técnicas & Extrae y normaliza atributos desde la documentación del proveedor y arma borradores con identidad de Unter. \\
+Fuentes abiertas externas & Registros públicos de empresas y redes profesionales consultados por el motor de búsqueda. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Alcance}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{lLL}
+\toprule
+\textbf{Módulo} & \textbf{Dentro del alcance (in)} & \textbf{Fuera del alcance (out)} \\
+\midrule
+Bot & Registro e historial de consultas, respuestas y derivaciones. & Resolución autónoma de negociaciones, precios o compromisos de pago y entrega. \\
+\addlinespace
+Bot & Derivación a Jani o Ariel según el tema. & Incorporación de un tercer responsable o nivel de escalamiento. \\
+\addlinespace
+N8N Clientes & Búsqueda y organización de empresas y contactos potenciales. & Envío automático de campañas o mensajes: Ariel realiza los envíos manualmente. \\
+\addlinespace
+Fichas Técnicas & Generación de borradores de fichas técnicas con identidad de Unter a partir de documentación del proveedor. & Fabricación de productos, modificación de sus especificaciones o presentación de Unter como fabricante. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Requisitos funcionales}
+
+Los requisitos se presentan ordenados por prioridad descendente, donde 1 corresponde a la mayor prioridad. La columna \textit{Razón} explicita la trazabilidad de cada requisito con el problema levantado.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{ccLL}
+\toprule
+\textbf{Prio.} & \textbf{ID} & \textbf{Requisito} & \textbf{Razón} \\
+\midrule
+1 & RF01 & Recibir consultas mediante chat y registrar cada consulta. & Es la entrada principal del sistema y la base del módulo de atención. \\
+\addlinespace
+2 & RF04 & Responder consultas únicamente con información y fichas técnicas aprobadas. & Es la función central del asistente y evita respuestas basadas en información no validada. \\
+\addlinespace
+3 & RF05 & Registrar información faltante y derivar la consulta cuando no pueda responderse. & Evita que el sistema invente información y asegura continuidad de atención. \\
+\addlinespace
+4 & RF06 & Derivar consultas a Jani o Ariel según el tipo de asunto. & Automatiza una regla de negocio concreta y reduce trabajo de coordinación. \\
+\addlinespace
+5 & RF08 & Buscar potenciales clientes según criterios definidos por Ariel. & Representa la funcionalidad principal del módulo de prospección. \\
+\addlinespace
+6 & RF09 & Guardar datos de empresas y contactos junto con fuente y fecha de obtención. & Permite construir una base comercial útil y trazable. \\
+\addlinespace
+7 & RF14 & Generar un borrador de ficha técnica Unter desde documentación del proveedor. & Es la funcionalidad de mayor valor del módulo de fichas técnicas. \\
+\addlinespace
+8 & RF15 & Permitir que Ariel revise, corrija y apruebe las fichas antes de utilizarlas. & Garantiza control humano y conecta directamente las fichas con el asistente. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Requisitos no funcionales}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{ccLL}
+\toprule
+\textbf{Prio.} & \textbf{ID} & \textbf{Requisito} & \textbf{Razón} \\
+\midrule
+1 & RNF01 & El asistente no debe entregar nunca una especificación técnica o un precio que no esté en la base: ante la ausencia del dato debe declararlo y derivar. & Un dato inventado entregado con la marca de Unter compromete la responsabilidad de la empresa frente al cliente. \\
+\addlinespace
+2 & RNF02 & Ninguna ficha técnica puede publicarse sin validación humana previa. & Desde que la ficha lleva la marca de Unter, el error deja de ser atribuible al proveedor. \\
+\addlinespace
+3 & RNF03 & Todo dato de contacto recopilado debe conservar su fuente y fecha de obtención, y debe existir un mecanismo de baja a solicitud del titular. & Cumplimiento de la Ley 21.719 sobre protección de datos personales. \\
+\addlinespace
+4 & RNF04 & El sistema debe ser operable por una persona sin formación técnica. & Unter no cuenta con personal de TI. \\
+\addlinespace
+5 & RNF05 & El registro de una respuesta o de un contacto enviado debe requerir un solo paso. & Con una dotación de dos personas, todo registro que exija más de un paso no se realiza, y sin registro el sistema pierde su valor. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%==============================================================
+\section{Procesos BPMN}
+\textit{Por completar: descripción y diagramas de los procesos en notación BPMN.}
+
+\section{Modelo de datos preliminar (ER)}
+\textit{Por completar: modelo entidad--relación preliminar con entidades, atributos y relaciones.}
+
+\section{Arquitectura lógica y stack}
+\textit{Por completar: componentes de la arquitectura lógica y tecnologías propuestas.}
+
+\section{Plan de Entrega 2 y riesgos}
+
+La Ley 21.719 entra en vigencia el \textbf{1 de diciembre de 2026}, diez días después del cierre de la Entrega 2, por lo que el sistema debe cumplirla desde su puesta en marcha. Unter, como PYME, queda cubierta por el artículo sexto transitorio: durante el primer año la Agencia puede amonestar en lugar de multar, pero las obligaciones son las mismas.
+
+\subsection*{Hitos y responsables}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{lLl}
+\toprule
+\textbf{Plazo} & \textbf{Hito} & \textbf{Responsable} \\
+\midrule
+12--30 sep & Entrevista formal con acta e indicadores del problema; modelo de datos en 3FN y \texttt{schema.sql}. & Godoy / Tapia \\
+1--14 oct & \texttt{seed.sql} con datos anonimizados y tres consultas de negocio. & Vera \\
+15--28 oct & Interfaz en localhost y tablero de KPI. & Soto \\
+29 oct--7 nov & Automatización (n8n) conectada al BPMN to-be y \texttt{docs/07-etica-ley-21719.md}. & Tapia / Godoy \\
+8--19 nov & \texttt{README} reproducible, informe actualizado y \texttt{CHANGELOG.md}. & Vera / equipo \\
+21 nov & Entrega en Aula y GitHub, 12:30. & Todo el equipo \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection*{Riesgos de datos personales en la operación del sistema}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{LL}
+\toprule
+\textbf{Riesgo} & \textbf{Mitigación} \\
+\midrule
+El módulo de prospección recopila datos de contacto sin una base de licitud que lo justifique. & Interés legítimo como base, con test de balanceo documentado y registro de actividades de tratamiento. \\
+Un contacto pide no ser contactado y el sistema vuelve a incluirlo en la siguiente campaña. & RF-21: marca \texttt{no\_contactar} en la empresa y bloqueo automático en toda campaña futura. \\
+La base acumula prospectos descartados de forma indefinida, sin finalidad vigente. & Plazo de conservación definido y purga periódica de los prospectos sin actividad. \\
+El asistente entrega al cliente información de otro cliente, o especificaciones que no existen en la base. & Identificación del interlocutor antes de responder, y RNF-01: solo responde desde fichas aprobadas. \\
+Acceso no autorizado a la base de contactos y fichas. & Control de acceso por usuario y procedimiento de notificación a la Agencia dentro de 72 horas. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\appendix
+\section{Anexos (capturas, acta)\label{anexo:material}}
+\textit{Por completar: capturas de respaldo y acta de reunión.}
+
+\end{document}
