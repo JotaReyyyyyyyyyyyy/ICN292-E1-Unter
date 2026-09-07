@@ -70,10 +70,10 @@ está documentado en el informe (sección de arquitectura lógica).
 
 | Nombre completo | Rol USM | RUT | Rol en el equipo | Usuario GitHub |
 |---|---|---|---|---|
-| Juan Pablo Godoy Fajardo | 202360577-8 | _pendiente_ | Evidencia del caso y gobernanza de datos | _pendiente_ |
-| Vicente Soto Martínez | 202204651-1 | _pendiente_ | Interfaz y tablero de KPI | _pendiente_ |
-| Joaquín Tapia Mandiola | 202260674-6 | _pendiente_ | Modelo de datos y automatización | JotaReyyyyyyyyyyyy |
-| Claudio Vera Avila | 202104575-9 | _pendiente_ | Base de datos y reproducibilidad | _pendiente_ |
+| Juan Pablo Godoy Fajardo | 202360577-8 | 21.633.620-8 | Evidencia del caso y gobernanza de datos | _pendiente_ |
+| Vicente Soto Martínez | 202204651-1 | 21.270.145-9 | Interfaz y tablero de KPI | _pendiente_ |
+| Joaquín Tapia Mandiola | 202260674-6 | 21.407.361-7 | Modelo de datos y automatización | JotaReyyyyyyyyyyyy |
+| Claudio Vera Avila | 202104575-9 | 22.231.192-6 | Base de datos y reproducibilidad | _pendiente_ |
 
 Los roles en el equipo corresponden al reparto de hitos del plan de Entrega 2
 (sección 7 del informe) y se confirman en la primera reunión posterior a la E1.
