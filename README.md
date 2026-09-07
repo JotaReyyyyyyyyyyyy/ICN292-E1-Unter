@@ -48,8 +48,8 @@ README.md                  este archivo
 docs/
   00-caso-pyme.md          identificacion de Unter, evidencia, problema y objetivo
   01-requerimientos.md     actores, alcance, requisitos funcionales y no funcionales
-  02-bpmn.md               flujos as-is y to-be de los tres procesos, en texto
-  03-er-preliminar.md      modelo entidad-relacion preliminar
+  02-bpmn.md               (pendiente) flujos as-is y to-be de los tres procesos
+  03-er-preliminar.md      (pendiente) modelo entidad-relacion preliminar
 assets/                    diagramas BPMN y ER exportados como imagen
 informe/                   informe final en PDF y en LaTeX (.tex)
 ```
