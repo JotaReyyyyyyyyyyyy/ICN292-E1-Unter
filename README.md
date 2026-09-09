@@ -48,14 +48,42 @@ README.md                  este archivo
 docs/
   00-caso-pyme.md          identificacion de Unter, evidencia, problema y objetivo
   01-requerimientos.md     actores, alcance, requisitos funcionales y no funcionales
-  02-bpmn.md               (pendiente) flujos as-is y to-be de los tres procesos
-  03-er-preliminar.md      (pendiente) modelo entidad-relacion preliminar
-assets/                    diagramas BPMN y ER exportados como imagen
-informe/                   informe final en PDF y en LaTeX (.tex)
+  04-pauta-entrevista.md   pauta de la entrevista formal y formato del acta
+assets/
+  bpm/                     los tres modelos de Bizagi (.bpm), fuente de los diagramas
+informe/
+  ICN292_P100_E1_Godoy_Tapia.tex   informe en LaTeX (fuente entregable)
+  ICN292_P100_E1_Godoy_Tapia.pdf   informe compilado
+  *.png                            diagramas BPMN y ER que usa el .tex
 ```
 
 La carpeta `informe/` contiene la versión entregable del informe. Es la misma que
 se sube a Aula.
+
+### Diagramas: de dónde salen
+
+Los seis diagramas BPMN **no se dibujan a mano en el informe**. La fuente son los
+tres archivos `.bpm` de `assets/bpm/`, que se abren con Bizagi Modeler; cada uno
+trae dos pestañas, `AS IS` y `TO BE`.
+
+| Archivo `.bpm` | Genera |
+|---|---|
+| `Atención a clientes.bpm` | `informe/atencion-ASIS.png`, `informe/atencion-TOBE.png` |
+| `Búsqueda de clientes.bpm` | `informe/busqueda-ASIS.png`, `informe/busqueda-TOBE.png` |
+| `Creación de Fichas Técnicas.bpm` | `informe/fichas-ASIS.png`, `informe/fichas-TOBE.png` |
+
+Si alguien edita un `.bpm` en Bizagi, hay que volver a exportar los PNG y
+recompilar el informe para que el anexo quede al día.
+
+### Cómo compilar el informe
+
+```
+cd informe
+pdflatex -interaction=nonstopmode ICN292_P100_E1_Godoy_Tapia.tex
+```
+
+Tres pasadas, para que cuadren el índice, las referencias cruzadas y las figuras.
+`latexmk` no sirve si la instalación de MiKTeX no trae Perl.
 
 ## 4. Relación con la Entrega 2
 

@@ -16,7 +16,7 @@
 | RUT | `[[DATO: RUT]]` |
 | Rubro | Intermediación y distribución de productos de terceros |
 | Tamaño | **2 personas** |
-| Ubicación | `[[DATO: dirección]]` |
+| Ubicación | La Concepción 81, `[[DATO: comuna y ciudad]]` |
 | Años de operación | `[[DATO: desde cuándo operan]]` |
 | Presencia pública | `[[DATO: sitio web / Instagram / ficha SII]]` |
 
@@ -50,7 +50,9 @@ que su propia operación genera, de modo que cada consulta de un cliente se
 resuelve desde cero, y la documentación técnica que entrega es la del proveedor,
 lo que expone a la empresa a la desintermediación.
 
-El problema se descompone en tres procesos, detallados en `02-bpmn.md`:
+El problema se descompone en tres procesos. Cada uno está modelado as-is y to-be
+en los archivos de Bizagi de `assets/bpm/`, y los seis diagramas van en el anexo
+del informe:
 
 ### 3.1 Atención de consultas sin entrada única ni registro
 

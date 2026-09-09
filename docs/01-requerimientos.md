@@ -1,9 +1,9 @@
 # 01 — Requerimientos
 
 Los requisitos de este documento se derivan directamente de los flujos to-be
-descritos en `02-bpmn.md`. Cada uno indica de qué problema de `00-caso-pyme.md`
-proviene, de modo que la trazabilidad problema → proceso → requisito quede
-explícita.
+modelados en los archivos de Bizagi de `assets/bpm/` y reproducidos en el anexo
+del informe. Cada uno indica de qué problema de `00-caso-pyme.md` proviene, de
+modo que la trazabilidad problema → proceso → requisito quede explícita.
 
 Priorización **MoSCoW**: `M` imprescindible, `S` importante, `C` deseable,
 `W` fuera de esta entrega.
