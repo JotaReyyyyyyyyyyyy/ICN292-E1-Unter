@@ -200,8 +200,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem non j
 Nombre & Unter SpA \\
 Rubro & Distribuidora de equipos de protección personal (EPP) \\
 Tamaño & Microempresa: 2 trabajadores \\
-Ubicación & La Concepción 81, \pend{comuna, ciudad} \\
-RUT & \pend{RUT de la empresa} \\
+Ubicación & La Concepción 81, Providencia, Santiago \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -215,9 +214,14 @@ RUT & \pend{RUT de la empresa} \\
 
 \subsection{Evidencia de existencia}
 
-\pend{Por completar: enlaces fechados, capturas numeradas en el anexo o acta de entrevista firmada. Responsable: Juan Pablo.}
-
 Se realizó una primera instancia de levantamiento en modalidad informal. La entrevista formal, con acta firmada, queda registrada en el Anexo~\ref{anexo:material}.
+
+{\color{red}
+\begin{itemize}
+\item Falta formalizar entrevista.
+\item Juan Pablo mandará el inicio de actividades del SII.
+\end{itemize}
+}
 
 \subsection{Problema de negocio}
 
@@ -292,7 +296,6 @@ Proveedor & Externo & Empresa que abastece los productos y origina la documentac
 Asistente de IA (bot) & Atiende el chat, interpreta la consulta, responde desde la base de información aprobada y deriva cuando no puede resolver. \\
 Motor de búsqueda de clientes (N8N) & Recorre fuentes abiertas, recopila y organiza empresas y contactos potenciales. \\
 Generador de fichas técnicas & Extrae y normaliza atributos desde la documentación del proveedor y arma borradores con identidad de Unter. \\
-Fuentes abiertas externas & Registros públicos de empresas y redes profesionales consultados por el motor de búsqueda. \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -306,13 +309,13 @@ Fuentes abiertas externas & Registros públicos de empresas y redes profesionale
 \toprule
 \textbf{Módulo} & \textbf{Dentro del alcance (in)} & \textbf{Fuera del alcance (out)} \\
 \midrule
-Bot & Registro e historial de consultas, respuestas y derivaciones. & Resolución autónoma de negociaciones, precios o compromisos de pago y entrega. \\
+Asistente de IA (Bot) & Registro e historial de consultas, respuestas y derivaciones. & Resolución autónoma de negociaciones, precios o compromisos de pago y entrega. \\
 \addlinespace
-Bot & Derivación a Jani o Ariel según el tema. & Incorporación de un tercer responsable o nivel de escalamiento. \\
+Asistente de IA (Bot) & Derivación a Jani o Ariel según el tema. & Incorporación de un tercer responsable o nivel de escalamiento. \\
 \addlinespace
-N8N Clientes & Búsqueda y organización de empresas y contactos potenciales. & Envío automático de campañas o mensajes: Ariel realiza los envíos manualmente. \\
+Motor de búsqueda de clientes (N8N) & Búsqueda y organización de empresas y contactos potenciales. & Envío automático de campañas o mensajes: Ariel realiza los envíos manualmente. \\
 \addlinespace
-Fichas Técnicas & Generación de borradores de fichas técnicas con identidad de Unter a partir de documentación del proveedor. & Fabricación de productos, modificación de sus especificaciones o presentación de Unter como fabricante. \\
+Generador de fichas técnicas & Generación de borradores de fichas técnicas con identidad de Unter a partir de documentación del proveedor. & Fabricación de productos, modificación de sus especificaciones o presentación de Unter como fabricante. \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -330,19 +333,19 @@ Los requisitos se presentan ordenados por prioridad descendente, donde 1 corresp
 \midrule
 1 & RF01 & Recibir consultas mediante chat y registrar cada consulta. & Es la entrada principal del sistema y la base del módulo de atención. \\
 \addlinespace
-2 & RF04 & Responder consultas únicamente con información y fichas técnicas aprobadas. & Es la función central del asistente y evita respuestas basadas en información no validada. \\
+2 & RF02 & Responder consultas únicamente con información y fichas técnicas aprobadas. & Es la función central del asistente y evita respuestas basadas en información no validada. \\
 \addlinespace
-3 & RF05 & Registrar información faltante y derivar la consulta cuando no pueda responderse. & Evita que el sistema invente información y asegura continuidad de atención. \\
+3 & RF03 & Registrar información faltante y derivar la consulta cuando no pueda responderse. & Evita que el sistema invente información y asegura continuidad de atención. \\
 \addlinespace
-4 & RF06 & Derivar consultas a Jani o Ariel según el tipo de asunto. & Automatiza una regla de negocio concreta y reduce trabajo de coordinación. \\
+4 & RF04 & Derivar consultas a Jani o Ariel según el tipo de asunto. & Automatiza una regla de negocio concreta y reduce trabajo de coordinación. \\
 \addlinespace
-5 & RF08 & Buscar potenciales clientes según criterios definidos por Ariel. & Representa la funcionalidad principal del módulo de prospección. \\
+5 & RF05 & Buscar potenciales clientes según criterios definidos por Ariel. & Representa la funcionalidad principal del módulo de prospección. \\
 \addlinespace
-6 & RF09 & Guardar datos de empresas y contactos junto con fuente y fecha de obtención. & Permite construir una base comercial útil y trazable. \\
+6 & RF06 & Guardar datos de empresas y contactos junto con fuente y fecha de obtención. & Permite construir una base comercial útil y trazable. \\
 \addlinespace
-7 & RF14 & Generar un borrador de ficha técnica Unter desde documentación del proveedor. & Es la funcionalidad de mayor valor del módulo de fichas técnicas. \\
+7 & RF07 & Generar un borrador de ficha técnica Unter desde documentación del proveedor. & Es la funcionalidad de mayor valor del módulo de fichas técnicas. \\
 \addlinespace
-8 & RF15 & Permitir que Ariel revise, corrija y apruebe las fichas antes de utilizarlas. & Garantiza control humano y conecta directamente las fichas con el asistente. \\
+8 & RF08 & Permitir que Ariel revise, corrija y apruebe las fichas antes de utilizarlas. & Garantiza control humano y conecta directamente las fichas con el asistente. \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -540,40 +543,66 @@ El criterio de selección no es la sofisticación sino que un tercero pueda leva
 
 \section{Plan de Entrega 2 y riesgos}
 
-La Ley 21.719 entra en vigencia el \textbf{1 de diciembre de 2026}, diez días después del cierre de la Entrega 2, por lo que el sistema debe cumplirla desde su puesta en marcha. Unter, como PYME, queda cubierta por el artículo sexto transitorio: durante el primer año la Agencia puede amonestar en lugar de multar, pero las obligaciones son las mismas.
-
-\subsection*{Hitos y responsables}
+\subsection{Marco normativo y puesta en marcha}
 
 \begin{table}[H]
 \centering
 \small
-\begin{tabularx}{\textwidth}{lLl}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{@{}p{0.24\textwidth}L@{}}
+\toprule
+\textbf{Aspecto} & \textbf{Descripción} \\
+\midrule
+Entrada en vigencia & La Ley 21.719 entra en vigencia el \textbf{1 de diciembre de 2026}, diez días después del cierre de la Entrega 2, por lo que el sistema debe cumplirla desde su puesta en marcha. \\
+\addlinespace
+Régimen para PYMEs & Unter, como PYME, queda cubierta por el artículo sexto transitorio: durante el primer año la Agencia puede amonestar en lugar de multar, pero las obligaciones son las mismas. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Hitos y responsables}
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth}L>{\raggedright\arraybackslash}p{0.20\textwidth}@{}}
 \toprule
 \textbf{Plazo} & \textbf{Hito} & \textbf{Responsable} \\
 \midrule
 12--30 sep & Entrevista formal con acta e indicadores del problema; modelo de datos en 3FN y \texttt{schema.sql}. & Godoy / Tapia \\
+\addlinespace
 1--14 oct & \texttt{seed.sql} con datos anonimizados y tres consultas de negocio. & Vera \\
+\addlinespace
 15--28 oct & Interfaz en localhost y tablero de KPI. & Soto \\
-29 oct--7 nov & Automatización (n8n) conectada al BPMN to-be y \texttt{docs/07-etica-ley-21719.md}. & Tapia / Godoy \\
+\addlinespace
+29 oct--7 nov & Automatización (n8n) conectada al BPMN to-be y \path{docs/07-etica-ley-21719.md}. & Tapia / Godoy \\
+\addlinespace
 8--19 nov & \texttt{README} reproducible, informe actualizado y \texttt{CHANGELOG.md}. & Vera / equipo \\
+\addlinespace
 21 nov & Entrega en Aula y GitHub, 12:30. & Todo el equipo \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\subsection*{Riesgos de datos personales en la operación del sistema}
+\subsection{Riesgos de datos personales en la operación del sistema}
 
 \begin{table}[H]
 \centering
 \small
-\begin{tabularx}{\textwidth}{LL}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{@{}LL@{}}
 \toprule
 \textbf{Riesgo} & \textbf{Mitigación} \\
 \midrule
 El módulo de prospección recopila datos de contacto sin una base de licitud que lo justifique. & Interés legítimo como base, con test de balanceo documentado y registro de actividades de tratamiento. \\
+\addlinespace
 Un contacto pide no ser contactado y el sistema vuelve a incluirlo en la siguiente campaña. & RF-21: marca \texttt{no\_contactar} en la empresa y bloqueo automático en toda campaña futura. \\
+\addlinespace
 La base acumula prospectos descartados de forma indefinida, sin finalidad vigente. & Plazo de conservación definido y purga periódica de los prospectos sin actividad. \\
+\addlinespace
 El asistente entrega al cliente información de otro cliente, o especificaciones que no existen en la base. & Identificación del interlocutor antes de responder, y RNF-01: solo responde desde fichas aprobadas. \\
+\addlinespace
 Acceso no autorizado a la base de contactos y fichas. & Control de acceso por usuario y procedimiento de notificación a la Agencia dentro de 72 horas. \\
 \bottomrule
 \end{tabularx}
