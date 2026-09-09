@@ -21,6 +21,7 @@
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 \usepackage{float}
+\usepackage{pdflscape}   % paginas apaisadas de verdad: el visor las gira solo
 \usepackage{lipsum}
 \usepackage[section]{placeins}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
@@ -370,13 +371,172 @@ Los requisitos se presentan ordenados por prioridad descendente, donde 1 corresp
 
 %==============================================================
 \section{Procesos BPMN}
-\textit{Por completar: descripción y diagramas de los procesos en notación BPMN.}
 
+Se modelaron los tres procesos críticos del caso, cada uno en su versión as-is y to-be. Los entes son dos personas dentro de Unter y el sistema propuesto. La regla de asignación es única: lo que involucra dinero, condiciones comerciales o negociación con proveedores queda en finanzas y proveedores; todo lo demás queda en operaciones. Por eso la generación de fichas técnicas, que es un trámite documental y no una negociación, transcurre completa en operaciones. Al ser una empresa de dos personas, no existe un tercer nivel de escalamiento.
+
+En los diagramas as-is el carril del sistema no existe, y esa ausencia es el diagnóstico.
+
+\subsection{Atención de consultas de clientes}
+
+Hoy la consulta entra por el canal que el cliente tenga a mano y se resuelve según quién la reciba y qué recuerde. Cuando el dato no está, se consulta al proveedor y el cliente queda esperando sin plazo. Nada se registra, así que la misma consulta se vuelve a resolver desde cero.
+
+En el to-be el chat es la entrada única: el asistente lee la consulta, revisa la base y responde cuando la información es suficiente. Si no lo es, recopila lo disponible, genera el aviso y deriva al gestor comercial con el contexto ya armado.
+
+Los diagramas as-is y to-be de este proceso están en las figuras~\ref{fig:aten-asis} y~\ref{fig:aten-tobe} del Anexo~\ref{anexo:bpmn}.
+
+\subsection{Búsqueda de clientes}
+
+La prospección actual es manual y sin memoria: se busca a mano, se escribe cada mensaje desde cero y el resultado queda anotado en una planilla o en ninguna parte. No hay registro de a quién ya se contactó.
+
+El to-be convierte esa búsqueda en una campaña con criterios explícitos. El sistema recopila y guarda los datos de contacto con su origen, califica a los prospectos y entrega la lista al gestor comercial. \textbf{El envío del primer contacto sigue siendo manual}: el sistema prepara, la persona decide y envía.
+
+Los diagramas as-is y to-be de este proceso están en las figuras~\ref{fig:busq-asis} y~\ref{fig:busq-tobe} del Anexo~\ref{anexo:bpmn}.
+
+\subsection{Fichas técnicas}
+
+La generación de fichas es un proceso interno: no lo dispara el cliente. Hoy tiene dos puntos de partida desconectados. Cuando entra un producto nuevo al inventario, el documento del proveedor se guarda en un correo o una carpeta y ahí termina, de modo que el producto queda en el catálogo sin ficha propia. Y cuando internamente se necesita la ficha, alguien busca ese documento, se lo pide al proveedor si no lo encuentra, y la arma a mano en PowerPoint. Esa ficha se usa para la consulta puntual que la motivó y después se desecha: no queda en el catálogo ni en ningún repositorio, así que el trabajo se repite entero la próxima vez que alguien pregunte por el mismo producto.
+
+El to-be convierte eso en un creador de fichas semi-automático que trabaja sobre el inventario y no sobre las consultas. Tiene dos disparadores: uno automático, cuando se agrega un producto nuevo, y uno a pedido, cuando operaciones lanza una revisión periódica para generar de una vez todas las fichas faltantes. Desde ahí el sistema detecta los productos sin ficha Unter, busca la documentación del proveedor, extrae y normaliza los atributos, y genera la ficha. \textbf{La parte semi del semi-automático es la aprobación}: ninguna ficha se publica sin que operaciones la revise. Si falta documentación, operaciones se la solicita al proveedor y el producto queda marcado como sin respaldo. El ciclo se repite hasta que no queden productos por procesar, de modo que el catálogo tiende a estar siempre con sus fichas al día.
+
+Los diagramas as-is y to-be de este proceso están en las figuras~\ref{fig:fich-asis} y~\ref{fig:fich-tobe} del Anexo~\ref{anexo:bpmn}.
+
+\subsection{Mejoras que introduce el SIG}
+
+\textbf{Qué se automatiza.} La recepción y clasificación de consultas, la búsqueda de la respuesta en la base, la recopilación y deduplicación de prospectos, y la extracción y normalización de los atributos técnicos del documento del proveedor. Son las tareas que hoy consumen tiempo de dos personas sin aportar criterio.
+
+\textbf{Qué se controla.} El plazo de las derivaciones, el seguimiento de los prospectos sin respuesta, y qué productos del catálogo no tienen ficha propia. En el as-is nada de esto tiene control: depende de que alguien se acuerde.
+
+\textbf{Qué se mide.} Consultas recibidas y resueltas por el asistente, tiempo de respuesta promedio y peor caso, prospectos contactados y convertidos, y cobertura de fichas propias sobre el catálogo. Ninguno de estos indicadores existe hoy, y son la línea base de los KPI de la Entrega 2.
+
+\textbf{Qué no cambia.} Las decisiones siguen siendo humanas: el sistema prepara, prioriza y registra, pero la aprobación de una ficha y el envío de un primer contacto los hace una persona.
+
+%==============================================================
 \section{Modelo de datos preliminar (ER)}
-\textit{Por completar: modelo entidad--relación preliminar con entidades, atributos y relaciones.}
 
+El modelo sostiene los tres procesos to-be con nueve entidades. Se usa la notación simplificada de la asignatura: cajas con atributos y tipo, clave primaria marcada con \texttt{\#} y \texttt{(ip)}, foráneas con \texttt{(fk)}, y la relación N:M resuelta con una entidad puente.
+
+\begin{landscape}
+\thispagestyle{plain}   % el encabezado con el logo, girado, queda de canto
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,height=0.9\textheight,keepaspectratio]{er_unter.png}
+\caption{Modelo entidad--relación preliminar de Unter.}
+\end{figure}
+\end{landscape}
+
+\subsection{Entidades}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{llL}
+\toprule
+\textbf{Entidad} & \textbf{PK candidata} & \textbf{Qué representa} \\
+\midrule
+CLIENTE & ID\_CLIENTE & Empresa externa, sea prospecto o cliente. Se modela una sola entidad porque un prospecto que compra sigue siendo la misma empresa. \\
+CONTACTO & ID\_CONTACTO & Persona dentro de una empresa. Separada porque el derecho de baja de la Ley 21.719 es de la persona, no de la organización. \\
+CONSULTA & ID\_CONSULTA & Cada interacción de un cliente con el asistente, con su canal, categoría y tiempos. \\
+DERIVACION & ID\_DERIVACION & Traspaso de una consulta a una persona, con asignado, plazo y estado. \\
+PRODUCTO & SKU & Ítem del catálogo. El SKU es único y esa unicidad es lo que detecta la carga duplicada. \\
+FICHA\_TECNICA & ID\_FICHA & Documentación con marca Unter. Entidad propia y versionada, no un campo de PRODUCTO, porque la aprobación y el versionado son parte del modelo. \\
+PROVEEDOR & ID\_PROV & Quien abastece los productos y origina la documentación técnica. \\
+CAMPANA & ID\_CAMPANA & Búsqueda de prospectos con criterios definidos. \\
+PROSPECCION & ID\_CAMPANA + ID\_CLIENTE & Entidad puente: resuelve el N:M entre campañas y empresas, y guarda lo que ocurrió en esa campaña. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Relaciones y cardinalidades}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{lcL}
+\toprule
+\textbf{Relación} & \textbf{Card.} & \textbf{Lectura} \\
+\midrule
+CLIENTE -- CONTACTO & 1:N & Una empresa tiene varios contactos; cada contacto pertenece a una empresa. \\
+CONTACTO -- CONSULTA & 1:N & Un contacto puede hacer muchas consultas. \\
+CONSULTA -- DERIVACION & 1:N & Una consulta puede derivarse más de una vez. \\
+PRODUCTO -- CONSULTA & 1:N & Un producto puede ser objeto de muchas consultas; una consulta apunta a lo más a un producto. \\
+PRODUCTO -- FICHA\_TECNICA & 1:N & Un producto acumula versiones de ficha, con una sola vigente. \\
+PROVEEDOR -- PRODUCTO & 1:N & Un proveedor abastece varios productos. \\
+CAMPANA -- PROSPECCION & 1:N & Una campaña evalúa muchas empresas. \\
+CAMPANA -- CLIENTE & N:M & Resuelta mediante la entidad puente PROSPECCION. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Trazabilidad proceso $\leftrightarrow$ datos}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{LL}
+\toprule
+\textbf{Paso del proceso to-be} & \textbf{Qué lo sostiene en el modelo} \\
+\midrule
+Reconocer a un cliente ya registrado. & CLIENTE + CONTACTO. \\
+Responder desde la base sin intervención humana. & FICHA\_TECNICA vigente asociada al PRODUCTO. \\
+Derivar con contexto y plazo controlado. & DERIVACION, con \texttt{ASIGNADO\_A}, \texttt{PLAZO} y \texttt{ESTADO}. \\
+Medir el tiempo de respuesta. & CONSULTA: \texttt{FECHA\_INGRESO} y \texttt{FECHA\_RESPUESTA}. \\
+Detectar productos sin ficha propia. & PRODUCTO.\texttt{ESTADO\_DOC}. \\
+Guardar el origen de cada dato de contacto. & CONTACTO: \texttt{FUENTE\_DATO} y \texttt{FECHA\_OBTENCION}. \\
+Bloquear a quien pide no ser contactado. & CLIENTE.\texttt{NO\_CONTACTAR}. \\
+No volver a prospectar una empresa ya trabajada. & PROSPECCION histórica por campaña. \\
+Publicar una ficha solo tras aprobación. & FICHA\_TECNICA: \texttt{ESTADO} y \texttt{VIGENTE}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+El punto de cierre entre los tres procesos está en PRODUCTO. El proceso de fichas recorre el inventario y llena FICHA\_TECNICA; el de atención lee la ficha vigente para responder sin intervención humana; y el de prospección alimenta CLIENTE y CONTACTO, que son quienes después hacen las consultas. Esa dependencia es la razón por la que los tres módulos son un solo sistema y no tres proyectos separados.
+
+%==============================================================
 \section{Arquitectura lógica y stack}
-\textit{Por completar: componentes de la arquitectura lógica y tecnologías propuestas.}
+
+\subsection{Componentes}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{lLL}
+\toprule
+\textbf{Capa} & \textbf{Componente} & \textbf{Función} \\
+\midrule
+Captura de datos & Chat del cliente, panel interno y carga de documentos del proveedor. & Punto único de entrada de consultas, definición de campañas y alta de documentación técnica. \\
+\addlinespace
+Automatización & Motor de flujos (n8n u homólogo). & Ejecuta la prospección y la generación de fichas conectadas al BPMN to-be. \\
+\addlinespace
+Procesamiento & Reconocimiento de producto, extracción y normalización de atributos. & Convierte el documento del proveedor en atributos con formato Unter. \\
+\addlinespace
+Persistencia & Base de datos relacional con el modelo de la sección anterior. & Fuente única de productos, fichas, consultas y prospectos. \\
+\addlinespace
+Analítica y KPI & Tablero de indicadores. & Tiempo de respuesta, consultas resueltas por el asistente, cobertura de fichas y conversión de prospectos. \\
+\addlinespace
+Interfaz & Navegador en localhost. & Chat para el cliente y panel para las dos personas de Unter. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Stack tentativo para la Entrega 2}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\textwidth}{lL}
+\toprule
+\textbf{Componente} & \textbf{Elección tentativa} \\
+\midrule
+Lenguaje & Python 3.11, con dependencias fijadas en \texttt{requirements.txt}. \\
+Interfaz y API & Streamlit para el panel y el tablero; FastAPI si el chat requiere un servicio aparte. \\
+Base de datos & PostgreSQL, con SQLite como alternativa si se prioriza levantar sin contenedores. \\
+Automatización & n8n, ejecutado en local. \\
+Reproducibilidad & \texttt{docker compose up} más \texttt{schema.sql} y \texttt{seed.sql} versionados en el repositorio. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+El criterio de selección no es la sofisticación sino que un tercero pueda levantar la solución siguiendo solo el \texttt{README}: clonar, instalar dependencias fijadas, cargar el esquema y los datos, levantar la interfaz y ver los KPI. Los datos de carga serán sintéticos o anonimizados, nunca los reales de Unter.
 
 \section{Plan de Entrega 2 y riesgos}
 
@@ -420,6 +580,46 @@ Acceso no autorizado a la base de contactos y fichas. & Control de acceso por us
 \end{table}
 
 \appendix
+\section{Diagramas BPMN\label{anexo:bpmn}}
+
+\begin{figure}[p]
+\centering
+\rotatebox{90}{\includegraphics[width=0.93\textheight]{atencion-ASIS.png}}
+\caption{Atención de consultas de clientes --- as-is.\label{fig:aten-asis}}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\rotatebox{90}{\includegraphics[width=0.93\textheight]{atencion-TOBE.png}}
+\caption{Atención de consultas de clientes --- to-be, con el asistente y la base de datos.\label{fig:aten-tobe}}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\rotatebox{90}{\includegraphics[width=0.93\textheight]{busqueda-ASIS.png}}
+\caption{Búsqueda de clientes --- as-is.\label{fig:busq-asis}}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\rotatebox{90}{\includegraphics[width=0.93\textheight]{busqueda-TOBE.png}}
+\caption{Búsqueda de clientes --- to-be, con campañas y base de prospectos.\label{fig:busq-tobe}}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\rotatebox{90}{\includegraphics[width=0.93\textheight]{fichas-ASIS.png}}
+\caption{Generación de fichas técnicas --- as-is.\label{fig:fich-asis}}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\rotatebox{90}{\includegraphics[width=0.93\textheight]{fichas-TOBE.png}}
+\caption{Generación de fichas técnicas --- to-be, creador semi-automático que recorre el inventario.\label{fig:fich-tobe}}
+\end{figure}
+
+\clearpage
+
 \section{Anexos (capturas, acta)\label{anexo:material}}
 \textit{Por completar: capturas de respaldo y acta de reunión.}
 
