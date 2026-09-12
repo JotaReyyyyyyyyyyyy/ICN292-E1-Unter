@@ -46,16 +46,24 @@ trae los clientes que entran por el componente 1.
 ```
 README.md                  este archivo
 docs/
-  00-caso-pyme.md          identificacion de Unter, evidencia, problema y objetivo
+  00-caso-pyme.md          identificacion de Unter, evidencia, problema e indicadores
   01-requerimientos.md     actores, alcance, requisitos funcionales y no funcionales
+  02-bpmn.md               los tres procesos as-is y to-be, y las mejoras del SIG
+  03-er-preliminar.md      entidades, relaciones y trazabilidad proceso-datos
   04-pauta-entrevista.md   pauta de la entrevista formal y formato del acta
 assets/
   bpm/                     los tres modelos de Bizagi (.bpm), fuente de los diagramas
 informe/
   ICN292_P100_E1_Godoy_Tapia.tex   informe en LaTeX (fuente entregable)
   ICN292_P100_E1_Godoy_Tapia.pdf   informe compilado
+  ICN292_P100_E1_Godoy_Tapia.zip   el mismo .tex + imagenes, para Overleaf o Prism
+  ICN292_P100_AudioEntrevista.mp4  entrevista formal grabada (evidencia)
+  ICN292_P100_TranscripcionEntrevista.txt  transcripcion integra del audio
   *.png                            diagramas BPMN y ER que usa el .tex
 ```
+
+La evidencia de existencia de la PYME es la **entrevista grabada y transcrita**
+que esta en `informe/`. De ahi salen los indicadores de la linea base.
 
 La carpeta `informe/` contiene la versión entregable del informe. Es la misma que
 se sube a Aula.
