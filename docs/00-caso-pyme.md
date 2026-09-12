@@ -35,8 +35,8 @@ nada.
 El enunciado exige acreditar la PYME por al menos una vía verificable. Vías
 disponibles para este caso:
 
-- [x] **Entrevista al encargado, grabada y transcrita** — la vía elegida
-- [ ] Presencia pública verificable — no se usó como ancla
+- [x] **Presencia pública verificable** — sitio web oficial <https://unter.cl> (consultado el 12 de septiembre de 2026)
+- [x] **Entrevista al encargado, grabada y transcrita**
 - [ ] Unidad operativa de una organización mayor — no aplica
 
 **Entrevista.** Tras una primera conversación informal de levantamiento, se
